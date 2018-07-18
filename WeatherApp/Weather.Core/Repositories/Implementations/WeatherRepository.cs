@@ -25,14 +25,13 @@ namespace Weather.Core.Repositories.Implementations
         {            
             WeatherModel weather = null;
             var request = new RestRequest(Helpers.Consts.WeatherGetCurrentUrl, Method.GET);
-            request.AddUrlSegment("city", city); // replaces matching token in request.Resource
+            request.AddUrlSegment("city", city);
             IRestResponse response = client.Execute(request);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 weather = JsonConvert.DeserializeObject<WeatherModel>(response.Content);
             }
             return weather;
-
         }
     }
 }

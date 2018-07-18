@@ -11,7 +11,6 @@ namespace WeatherApp.WebApi
 {
     public class AutofacConfig
     {
-       // private static IContainer Container { get; set; }
         public static IContainer Container;
 
         public static void Initialize(HttpConfiguration config)
@@ -27,7 +26,6 @@ namespace WeatherApp.WebApi
 
         private static IContainer RegisterServices(ContainerBuilder builder)
         {
-            //Register your Web API controllers.  
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             builder.RegisterType<WeatherRepository>()
