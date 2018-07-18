@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WeatherApp.Models.Requests;
-using WeatherApp.Models.Responses;
-using WeatherApp.Services.Infrastructure;
+using Weather.Core.Models.Requests;
+using Weather.Core.Models.Responses;
+using Weather.Core.Services.Infrastructure;
 
 namespace WeatherApp.Controllers
 {

@@ -1,0 +1,84 @@
+﻿@using WeatherApp.FrontEnd.Models
+@model GetCurrentWeather
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    bool notFound = false;
+    if (ViewBag.NotFound != null)
+    {
+        notFound = (bool)ViewBag.NotFound;
+    }
+
+}
+
+@if (Model != null && !notFound)
+{
+
+    <div class="row">
+        <h4>Weather informations</h4>
+        <hr>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>City</th>
+                        <th>Temperature</th>
+                        <th>Humidity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.Country</td>
+                        <td>@Model.City</td>
+                        <td>@Model.TemperatureValue</td>
+                        <td>@Model.Humidity</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+else if (notFound)
+{
+    <div class="alert alert-danger" role="alert">
+        Error occurred. Probably not found country or city.
+    </div>
+}
+
+@using (Html.BeginForm("CurrentWeather", "WeatherUI", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Current Weather</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => Model.Country, htmlAttributes: new { @class =
+              "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => Model.Country, new { htmlAttributes = new { @class =
+                  "form-control" } })
+                @Html.ValidationMessageFor(model => Model.Country, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => Model.City, htmlAttributes: new { @class =
+              "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => Model.City, new { htmlAttributes = new { @class =
+                  "form-control" } })
+                @Html.ValidationMessageFor(model => Model.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

@@ -2,10 +2,10 @@
 using Autofac.Integration.WebApi;
 using System.Reflection;
 using System.Web.Http;
-using WeatherApp.Repositories.Implementations;
-using WeatherApp.Repositories.IRepositories;
-using WeatherApp.Services;
-using WeatherApp.Services.Infrastructure;
+using Weather.Core.Repositories.Implementations;
+using Weather.Core.Repositories.IRepositories;
+using Weather.Core.Services;
+using Weather.Core.Services.Infrastructure;
 
 namespace WeatherApp.App_Start
 {
