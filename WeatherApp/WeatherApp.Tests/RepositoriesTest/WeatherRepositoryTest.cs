@@ -32,9 +32,8 @@ namespace WeatherApp.Tests.RepositoriesTest
             Assert.NotNull(repository);
         }
 
-        [Theory]
-        [InlineData("Test","Test")]
-        public void GetCurrentWeatherByCityGood(string city,string expected)
+        [Fact]
+        public void GetCurrentWeatherByCityGood()
         {
             IRestClient restclient;
             restclient = Substitute.For<IRestClient>();
@@ -45,18 +44,17 @@ namespace WeatherApp.Tests.RepositoriesTest
             response.Content = JsonConvert.SerializeObject(new WeatherModel
             {
                 Current =new CurrentWeather{ Humidity=3},
-                Location =new Location {Name=city,Country="test" }
+                Location =new Location {Name="test",Country="test" }
             });
 
             restclient.Execute(request).Returns(response);
             IWeatherRepository repository = new WeatherRepository(restclient, request);
-            var result=repository.GetCurrentWeatherByCity(city);
-            Assert.Equal(expected,result.Location.Name);
+            var result=repository.GetCurrentWeatherByCity("test");
+            Assert.Equal("test",result.Location.Name);
         }
 
-        [Theory]
-        [InlineData("Test")]
-        public void GetCurrentWeatherByCityNotGood(string city)
+        [Fact]
+        public void GetCurrentWeatherByCityNotGood()
         {
             IRestClient restclient;
             restclient = Substitute.For<IRestClient>();
@@ -67,12 +65,12 @@ namespace WeatherApp.Tests.RepositoriesTest
             response.Content = JsonConvert.SerializeObject(new WeatherModel
             {
                 Current = new CurrentWeather { Humidity = 3 },
-                Location = new Location { Name = city, Country = "test" }
+                Location = new Location { Name = "test", Country = "test" }
             });
 
             restclient.Execute(request).Returns(response);
             IWeatherRepository repository = new WeatherRepository(restclient, request);
-            var result = repository.GetCurrentWeatherByCity(city);
+            var result = repository.GetCurrentWeatherByCity("test");
             Assert.Null(result);
         }
     }
