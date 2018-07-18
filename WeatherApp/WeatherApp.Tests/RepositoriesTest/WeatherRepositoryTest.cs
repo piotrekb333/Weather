@@ -27,13 +27,13 @@ namespace WeatherApp.Tests.RepositoriesTest
         public void WeatherRepositoryConstructorWithParameterGood()
         {
             IRestClient resclient = new RestClient();
-            IWeatherRepository repository = new WeatherRepository(resclient);
+            IRestRequest request = new RestRequest();
+            IWeatherRepository repository = new WeatherRepository(resclient, request);
             Assert.NotNull(repository);
         }
 
         [Theory]
         [InlineData("Test","Test")]
-        [InlineData("Test2", "Test2")]
         public void GetCurrentWeatherByCityGood(string city,string expected)
         {
             IRestClient restclient;
@@ -49,15 +49,14 @@ namespace WeatherApp.Tests.RepositoriesTest
             });
 
             restclient.Execute(request).Returns(response);
-            IWeatherRepository repository = new WeatherRepository(restclient);
+            IWeatherRepository repository = new WeatherRepository(restclient, request);
             var result=repository.GetCurrentWeatherByCity(city);
             Assert.Equal(expected,result.Location.Name);
         }
 
         [Theory]
-        [InlineData("Test", null)]
-        [InlineData("Test2", null)]
-        public void GetCurrentWeatherByCityNotGood(string city, string expected)
+        [InlineData("Test")]
+        public void GetCurrentWeatherByCityNotGood(string city)
         {
             IRestClient restclient;
             restclient = Substitute.For<IRestClient>();
@@ -72,9 +71,9 @@ namespace WeatherApp.Tests.RepositoriesTest
             });
 
             restclient.Execute(request).Returns(response);
-            IWeatherRepository repository = new WeatherRepository(restclient);
+            IWeatherRepository repository = new WeatherRepository(restclient, request);
             var result = repository.GetCurrentWeatherByCity(city);
-            Assert.Equal(expected, result.Location.Name);
+            Assert.Null(result);
         }
     }
 }
