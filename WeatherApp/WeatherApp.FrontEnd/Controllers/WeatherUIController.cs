@@ -26,7 +26,10 @@ namespace WeatherApp.FrontEnd.Controllers
         public ActionResult CurrentWeather(GetCurrentWeather model)
         {
             if (!ModelState.IsValid)
+            {
+                ViewBag.NotFound = false;
                 return View(model);
+            }
             var result = weatherService.GetCurrentWeather(new GetWeatherRequestModel
             {
                 City =model.City,
