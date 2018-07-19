@@ -18,9 +18,6 @@ namespace WeatherApp.IntegrationTests.ApiControllers
 
     public class WeatherControllerTests
     {
-        public WeatherControllerTests()
-        {
-        }
 
         [Fact]
         public void GetCurrentWeatherJson()
