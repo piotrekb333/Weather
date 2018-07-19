@@ -27,7 +27,7 @@ namespace Weather.Core.Repositories.Implementations
         {            
             WeatherModel weather = null;
             if(request==null)
-                request = new RestRequest(Helpers.Consts.WeatherGetCurrentUrl, Method.GET);
+                request = new RestRequest(Helpers.Consts.WeatherGetCurrentEndPoint, Method.GET);
             request.AddUrlSegment("city", city);
             IRestResponse response = client.Execute(request);
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
