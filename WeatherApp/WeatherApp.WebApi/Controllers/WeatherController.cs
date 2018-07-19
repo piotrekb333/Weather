@@ -13,9 +13,11 @@ namespace WeatherApp.WebApi.Controllers
     public class WeatherController : ApiController
     {
         private readonly IWeatherService weatherService;
+
         public WeatherController(IWeatherService _weatherService)
         {
             weatherService = _weatherService;
+
         }
         [HttpGet]
         [Route("api/weather/{country}/{city}")]
