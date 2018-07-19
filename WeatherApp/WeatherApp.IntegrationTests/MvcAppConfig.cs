@@ -9,7 +9,6 @@ namespace WeatherApp.IntegrationTests
 
     public static class MvcAppConfig
     {
-        public const string APIUrl = "http://localhost:51583/";
         public static SpecsForIntegrationHost _host;
         private static bool IsRun = false;
         public static MvcWebApp app;
