@@ -24,7 +24,7 @@ namespace WeatherApp.Tests.ServicesTests
                 Location = new Weather.Core.Models.Location { Country = "Poland", Name = "Warsaw" }
             });
             IWeatherService weatherService = new WeatherService(weatherRepo);
-            var result=weatherService.GetCurrentWeather(new Weather.Core.Models.Requests.GetWeatherRequestModel
+            var result=weatherService.GetCurrentWeather(new Weather.Core.Models.Requests.GetWeatherModel
             {
                 City="Warsaw",
                 Country="Poland"

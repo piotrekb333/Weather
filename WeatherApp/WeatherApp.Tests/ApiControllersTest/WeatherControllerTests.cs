@@ -1,11 +1,10 @@
 ﻿using NSubstitute;
-
 using System.Web.Http.Results;
 using Weather.Core.Models.Requests;
 using Weather.Core.Models.Responses;
-
 using Weather.Core.Services.Infrastructure;
 using WeatherApp.WebApi.Controllers;
+using WeatherApp.WebApi.Models;
 using Xunit;
 
 namespace WeatherApp.Tests.ApiControllersTest
@@ -23,21 +22,21 @@ namespace WeatherApp.Tests.ApiControllersTest
         [Fact]
         public void WeatherByCityTestGood()
         {
-            var request = new GetWeatherRequestModel
+            var request = new GetWeatherModel
             {
                 City = "Warsaw",
                 Country = "Poland"
             };
             IWeatherService weatherService;
             weatherService=Substitute.For<IWeatherService>();
-            weatherService.GetCurrentWeather(Arg.Any<GetWeatherRequestModel>()).Returns(new Weather.Core.Models.Responses.CurrentWeatherResponseModel
+            weatherService.GetCurrentWeather(Arg.Any<GetWeatherModel>()).Returns(new Weather.Core.Models.Responses.CurrentWeatherResponseModel
             {
                 humidity=4,
                 location=new Weather.Core.Models.Responses.ResponseLocation { city="Warsaw",country="Poland"},
                 temperature=new Weather.Core.Models.Responses.ResponseTemperature { format="test",value=4}
             });
             WeatherController controller = new WeatherController(weatherService);
-            var res=controller.WeatherByCity(new GetWeatherRequestModel
+            var res=controller.WeatherByCity(new GetWeatherRequest
             {
                 City = "Warsaw",
                 Country = "Poland"

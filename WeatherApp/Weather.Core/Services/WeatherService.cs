@@ -18,7 +18,7 @@ namespace Weather.Core.Services
             weatherRepository = _weatherRepository;
         }
 
-        public CurrentWeatherResponseModel GetCurrentWeather(GetWeatherRequestModel model)
+        public CurrentWeatherResponseModel GetCurrentWeather(GetWeatherModel model)
         {
             WeatherModel weather=weatherRepository.GetCurrentWeatherByCity(model.City);
             if (weather == null)

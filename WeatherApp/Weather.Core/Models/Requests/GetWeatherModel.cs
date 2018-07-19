@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Weather.Core.Models.Requests
 {
-    public class GetWeatherRequestModel
+    public class GetWeatherModel
     {
         public string Country { get; set; }
         public string City { get; set; }

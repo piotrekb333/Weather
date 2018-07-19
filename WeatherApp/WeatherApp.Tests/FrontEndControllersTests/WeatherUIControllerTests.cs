@@ -32,14 +32,14 @@ namespace WeatherApp.Tests.FrontEndControllersTests
         [Fact]
         public void CurrentWeatherPostFormTestGood()
         {
-            var request = new GetWeatherRequestModel
+            var request = new GetWeatherModel
             {
                 City = "Warsaw",
                 Country = "Poland"
             };
             IWeatherService weatherService;
             weatherService = Substitute.For<IWeatherService>();
-            weatherService.GetCurrentWeather(Arg.Any<GetWeatherRequestModel>()).Returns(new Weather.Core.Models.Responses.CurrentWeatherResponseModel
+            weatherService.GetCurrentWeather(Arg.Any<GetWeatherModel>()).Returns(new Weather.Core.Models.Responses.CurrentWeatherResponseModel
             {
                 humidity = 4,
                 location = new Weather.Core.Models.Responses.ResponseLocation { city = "Warsaw", country = "Poland" },

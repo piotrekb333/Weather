@@ -5,6 +5,6 @@ namespace Weather.Core.Services.Infrastructure
 {
     public interface IWeatherService
     {
-        CurrentWeatherResponseModel GetCurrentWeather(GetWeatherRequestModel model);
+        CurrentWeatherResponseModel GetCurrentWeather(GetWeatherModel model);
     }
 }

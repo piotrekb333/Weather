@@ -32,7 +32,7 @@ namespace WeatherApp.FrontEnd.Controllers
                 return View(model);
             }
             ViewBag.Validation = true;
-            var result = weatherService.GetCurrentWeather(new GetWeatherRequestModel
+            var result = weatherService.GetCurrentWeather(new GetWeatherModel
             {
                 City =model.City,
                 Country =model.Country

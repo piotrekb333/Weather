@@ -50,7 +50,7 @@
     <Compile Include="Helpers\Consts.cs" />
     <Compile Include="Models\CurrentWeather.cs" />
     <Compile Include="Models\Location.cs" />
-    <Compile Include="Models\Requests\GetWeatherRequestModel.cs" />
+    <Compile Include="Models\Requests\GetWeatherModel.cs" />
     <Compile Include="Models\Responses\CurrentWeatherResponseModel.cs" />
     <Compile Include="Models\Responses\ResponseLocation.cs" />
     <Compile Include="Models\Responses\ResponseTemperature.cs" />

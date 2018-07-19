@@ -7,6 +7,7 @@ using System.Web.Http;
 using Weather.Core.Models.Requests;
 using Weather.Core.Models.Responses;
 using Weather.Core.Services.Infrastructure;
+using WeatherApp.WebApi.Models;
 
 namespace WeatherApp.WebApi.Controllers
 {
@@ -21,11 +22,15 @@ namespace WeatherApp.WebApi.Controllers
         }
         [HttpGet]
         [Route("api/weather/{country}/{city}")]
-        public IHttpActionResult WeatherByCity([FromUri]GetWeatherRequestModel model)
+        public IHttpActionResult WeatherByCity([FromUri]GetWeatherRequest model)
         {
             try
             {
-                var result=weatherService.GetCurrentWeather(model);
+                var result=weatherService.GetCurrentWeather(new GetWeatherModel
+                {
+                    City=model.City,
+                    Country=model.Country
+                });
                 if (result == null)
                     return NotFound();
                 return Ok<CurrentWeatherResponseModel>(result);
