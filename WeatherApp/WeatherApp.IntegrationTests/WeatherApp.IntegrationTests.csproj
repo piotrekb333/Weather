@@ -128,8 +128,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiControllers\WeatherControllerTests.cs" />
-    <Compile Include="ApiControllers\WeatherUIControllerTests.cs" />
+    <Compile Include="Controllers\WeatherControllerTests.cs" />
+    <Compile Include="Controllers\WeatherUIControllerTests.cs" />
     <Compile Include="MvcAppConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
