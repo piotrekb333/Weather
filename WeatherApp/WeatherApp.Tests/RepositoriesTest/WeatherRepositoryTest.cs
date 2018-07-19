@@ -17,14 +17,14 @@ namespace WeatherApp.Tests.RepositoriesTest
     {
 
         [Fact]
-        public void WeatherRepositoryConstructorGood()
+        public void WeatherRepositoryConstructorTestGood()
         {
             IWeatherRepository repository = new WeatherRepository();
             Assert.NotNull(repository);
         }
 
         [Fact]
-        public void WeatherRepositoryConstructorWithParameterGood()
+        public void WeatherRepositoryConstructorWithParameterTestGood()
         {
             IRestClient resclient = new RestClient();
             IRestRequest request = new RestRequest();
@@ -33,7 +33,7 @@ namespace WeatherApp.Tests.RepositoriesTest
         }
 
         [Fact]
-        public void GetCurrentWeatherByCityGood()
+        public void GetCurrentWeatherByCityTestGood()
         {
             IRestClient restclient;
             restclient = Substitute.For<IRestClient>();
@@ -54,7 +54,7 @@ namespace WeatherApp.Tests.RepositoriesTest
         }
 
         [Fact]
-        public void GetCurrentWeatherByCityNotGood()
+        public void GetCurrentWeatherByCityTestNotGood()
         {
             IRestClient restclient;
             restclient = Substitute.For<IRestClient>();

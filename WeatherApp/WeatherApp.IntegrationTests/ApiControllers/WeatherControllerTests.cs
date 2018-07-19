@@ -25,7 +25,7 @@ namespace WeatherApp.IntegrationTests.ApiControllers
     {
 
         [Fact]
-        public void GetCurrentWeatherJson()
+        public void GetCurrentWeatherJsonTest()
         {
             var config = new HttpSelfHostConfiguration("http://localhost:51583");
           

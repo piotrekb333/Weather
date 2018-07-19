@@ -14,7 +14,7 @@ namespace WeatherApp.Tests.ServicesTests
     public class WeatherServiceTests
     {
         [Fact]
-        public void WeatherRepositoryConstructorGood()
+        public void WeatherRepositoryConstructorTestGood()
         {
             IWeatherRepository weatherRepo;
             weatherRepo = Substitute.For<IWeatherRepository>();

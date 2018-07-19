@@ -20,14 +20,14 @@ namespace WeatherApp.IntegrationTests.ApiControllers
         }
         
         [Fact]
-        public void DisplayCurrentWeatherPage()
+        public void DisplayCurrentWeatherPageTest()
         {
 
             MvcAppConfig.app.NavigateTo<WeatherUIController>(controller => controller.CurrentWeather());
             MvcAppConfig.app.UrlShouldMapTo<WeatherUIController>(c => c.CurrentWeather());
         }
         [Fact]
-        public void DisplayCurrentWeatherPageStart()
+        public void DisplayCurrentWeatherPageStartTest()
         {
             MvcAppConfig.app.NavigateTo<HomeController>(controller => controller.Index());
             MvcAppConfig.app.UrlShouldMapTo<WeatherUIController>(c => c.CurrentWeather());
@@ -35,7 +35,7 @@ namespace WeatherApp.IntegrationTests.ApiControllers
         }
 
         [Fact]
-        public void CurrentWeatherPostForm()
+        public void CurrentWeatherPostFormTest()
         {
             MvcAppConfig.app.NavigateTo<HomeController>(controller => controller.Index());
             MvcAppConfig.app.FindFormFor<GetCurrentWeather>()
