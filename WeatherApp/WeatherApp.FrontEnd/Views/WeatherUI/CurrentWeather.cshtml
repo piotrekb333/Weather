@@ -3,14 +3,19 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     bool notFound = false;
+    bool validation = true;
     if (ViewBag.NotFound != null)
     {
         notFound = (bool)ViewBag.NotFound;
     }
+    if (ViewBag.Validation != null)
+    {
+        validation = (bool)ViewBag.Validation;
+    }
 
 }
 
-@if (Model != null && !notFound)
+@if (Model != null && !notFound && validation)
 {
 
     <div class="row">

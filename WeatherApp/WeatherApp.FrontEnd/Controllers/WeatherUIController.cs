@@ -28,8 +28,10 @@ namespace WeatherApp.FrontEnd.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.NotFound = false;
+                ViewBag.Validation = false;
                 return View(model);
             }
+            ViewBag.Validation = true;
             var result = weatherService.GetCurrentWeather(new GetWeatherRequestModel
             {
                 City =model.City,
