@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http;
+using System.Web.Routing;
 using WeatherApp.FrontEnd;
 using WeatherApp.WebApi;
 
@@ -13,6 +15,7 @@ namespace WeatherApp.IntegrationTests
 
     public static class MvcAppConfig
     {
+        public const string APIUrl = "http://localhost:51583/";
         public static SpecsForIntegrationHost _host;
         private static bool IsRun = false;
         private static bool IsApiRun = false;
@@ -55,8 +58,8 @@ namespace WeatherApp.IntegrationTests
             config.UseBrowser(BrowserDriver.InternetExplorer);
             _host = new SpecsForIntegrationHost(config);
             _host.Start();
-            app = new MvcWebApp();
-
+            appApi = new MvcWebApp();
+            //WebApiConfig.Register();
             IsRun = true;
         }
 
@@ -64,6 +67,45 @@ namespace WeatherApp.IntegrationTests
         {
             _host.Shutdown();
             IsRun = false;
+        }
+
+        public static void AddHttpRoutes(this HttpRouteCollection routeCollection)
+        {
+            var routes = GetRoutes();
+            routes.ForEach(route => routeCollection.MapHttpRoute(route.Name, route.Template, route.Defaults));
+        }
+
+        public static void AddHttpRoutes(this RouteCollection routeCollection)
+        {
+            var routes = GetRoutes();
+            routes.ForEach(route => routeCollection.MapHttpRoute(route.Name, route.Template, route.Defaults));
+        }
+
+        private static List<Route> GetRoutes()
+        {
+            return new List<Route>
+               {
+                   new Route(
+                       "DefaultApi",
+                       "api/{controller}/{id}",
+                       new { id = RouteParameter.Optional })
+               };
+        }
+
+        private class Route
+        {
+            public Route(string name, string template, object defaults)
+            {
+                this.Name = name;
+                this.Template = template;
+                this.Defaults = defaults;
+            }
+
+            public object Defaults { get; set; }
+
+            public string Name { get; set; }
+
+            public string Template { get; set; }
         }
     }
 }
